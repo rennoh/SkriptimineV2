@@ -5,4 +5,4 @@ echo "Today is $(date +"%A, %B %d, %Y")"
 echo "Time is $(date +"%H:%M")"
 echo ""
 echo "Calendar of $(date +"%B %Y")"
-ncal -b
+ncal -b | tail -n 7
