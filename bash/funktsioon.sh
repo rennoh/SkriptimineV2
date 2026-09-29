@@ -1,13 +1,13 @@
 #!/bin/bash
 
 kontrolli_faili() {
- 	if [ ! -f "$1" ]; then
-     	echo "Faili ei leitud!"
+ 	if [ -f "$1" ]; then
+     	return 0
+ 	else
      	return 1
  	fi
-
- 	echo "Fail on olemas."
  }
 
-return 0	# tegevus õnnestus
-return 1	# tekkis probleem
+ kontrolli_faili "/etc/passwd"
+
+ echo $?
