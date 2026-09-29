@@ -1,7 +1,8 @@
 hello() {
- 	echo "Tere tulemast!"
+ 	echo "Tere!"
  }
 
- hello
- hello
- hello
+ for i in {1..5}
+ do
+ 	hello
+ done
