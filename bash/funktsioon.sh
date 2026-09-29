@@ -1,9 +1,12 @@
 #!/bin/bash
 
-kasutaja_info() {
- 	local nimi="$1"
- 	local vanus="$2"
+liida() {
+ 	local a="$1"
+ 	local b="$2"
 
- 	echo "Nimi: $nimi"
- 	echo "Vanus: $vanus"
+ 	echo "$((a + b))"
  }
+
+tulemus=$(liida 10 20)
+
+ echo "Tulemus: $tulemus"
