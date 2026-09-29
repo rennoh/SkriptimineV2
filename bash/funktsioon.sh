@@ -1,14 +1,32 @@
 #!/bin/bash
 
-kontroll() {
- 	if [ ! -f "$1" ]; then
-     	echo "Faili pole."
-     	return 1
- 	fi
-
- 	echo "Fail leitud."
+show_header() {
+ 	echo "======================"
+ 	echo " 	SYSTEM INFO"
+ 	echo "======================"
  }
 
- kontroll "/tmp/test.txt"
+ show_user() {
+ 	echo "Kasutaja: $(whoami)"
+ }
 
- echo "Skript jätkab tööd."
+ show_host() {
+ 	echo "Arvuti: $(hostname)"
+ }
+
+ show_kernel() {
+ 	echo "Kernel: $(uname -r)"
+ }
+
+ show_disk() {
+ 	echo
+ 	echo "Kettakasutus:"
+ 	df -h /
+ }
+
+ show_header
+ show_user
+ show_host
+ show_kernel
+ show_disk
+
