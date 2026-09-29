@@ -1,11 +1,10 @@
-liida() {
- 	if [ $# -ne 2 ]; then
-     	echo "Viga: sisesta kaks arvu!"
-     	return 1
- 	fi
+naita() {
+ 	echo "Funktsioonile anti:"
 
- 	echo "((1 + $2))"
+ 	for argument in "$@"
+ 	do
+     	echo "$argument"
+ 	done
  }
 
- liida 10 20
-
+ naita "üks" "kaks" "kolm"
