@@ -1,5 +1,11 @@
-kontrolli() {
- 	echo "Argumentide arv: $#"
+liida() {
+ 	if [ $# -ne 2 ]; then
+     	echo "Viga: sisesta kaks arvu!"
+     	return 1
+ 	fi
+
+ 	echo "((1 + $2))"
  }
 
- kontrolli üks kaks kolm
+ liida 10 20
+
