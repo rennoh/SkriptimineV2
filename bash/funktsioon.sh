@@ -1,10 +1,6 @@
-naita() {
- 	echo "Funktsioonile anti:"
-
- 	for argument in "$@"
- 	do
-     	echo "$argument"
- 	done
+hello() {
+ 	nimi="Mari"
+ 	echo "Tere, $nimi!"
  }
 
- naita "üks" "kaks" "kolm"
+ hello
