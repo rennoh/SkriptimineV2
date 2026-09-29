@@ -1,7 +1,7 @@
 test() {
- 	nimi="Mari"
+ 	local nimi="Mari"
+ 	echo "$nimi"
  }
 
  test
 
- echo "$nimi"
