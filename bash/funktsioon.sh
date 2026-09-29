@@ -1,16 +1,5 @@
-show_user() {
- 	echo "Kasutaja:"
- 	whoami
+tervita() {
+ 	echo "Tere, $1!"
  }
 
- show_host() {
- 	echo "Arvuti:"
- 	hostname
- }
-
- show_system() {
- 	show_user
- 	show_host
- }
-
- show_system
+ tervita "Mari"
