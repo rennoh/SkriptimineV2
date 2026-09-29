@@ -1,7 +1,7 @@
-#!/bin/bash
-
 hello() {
- 	echo "Hello!"
+ 	echo "Tere tulemast!"
  }
 
+ hello
+ hello
  hello
