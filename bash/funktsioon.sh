@@ -1,5 +1,5 @@
-liida() {
- 	echo "((1 + $2))"
+kontrolli() {
+ 	echo "Argumentide arv: $#"
  }
 
- liida 10 5
+ kontrolli üks kaks kolm
