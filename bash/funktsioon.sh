@@ -1,6 +1,7 @@
-hello() {
+test() {
  	nimi="Mari"
- 	echo "Tere, $nimi!"
  }
 
- hello
+ test
+
+ echo "$nimi"
