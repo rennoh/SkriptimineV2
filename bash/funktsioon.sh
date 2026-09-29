@@ -3,3 +3,5 @@ tervita() {
  }
 
  tervita "Mari"
+ tervita "Jüri"
+ tervita "Anna"
