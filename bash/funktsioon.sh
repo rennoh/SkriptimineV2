@@ -1,9 +1,12 @@
-#!/bin/bash
+system_info() {
+ 	echo "===================="
+ 	echo "SÜSTEEMI INFO"
+ 	echo "===================="
 
- tervita() {
- 	echo "Tere!"
- 	echo "Tänane kuupäev on:"
- 	date
+ 	hostname
+ 	uname -r
+ 	whoami
  }
 
- tervita
+ system_info
+ system_info
