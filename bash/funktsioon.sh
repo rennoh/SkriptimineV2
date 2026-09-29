@@ -1,7 +1,6 @@
-tervita() {
- 	echo "Tere, $1!"
+kasutaja_info() {
+ 	echo "Nimi: $1"
+ 	echo "Vanus: $2"
  }
 
- tervita "Mari"
- tervita "Jüri"
- tervita "Anna"
+ kasutaja_info "Mari" 18
