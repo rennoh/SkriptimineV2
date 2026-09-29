@@ -1,8 +1,16 @@
-hello() {
- 	echo "Tere!"
+show_user() {
+ 	echo "Kasutaja:"
+ 	whoami
  }
 
- for i in {1..5}
- do
- 	hello
- done
+ show_host() {
+ 	echo "Arvuti:"
+ 	hostname
+ }
+
+ show_system() {
+ 	show_user
+ 	show_host
+ }
+
+ show_system
