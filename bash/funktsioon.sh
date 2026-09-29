@@ -1,13 +1,11 @@
 #!/bin/bash
 
-kontrolli_faili() {
- 	if [ -f "$1" ]; then
-     	return 0
- 	else
-     	return 1
- 	fi
+fail_olemas() {
+ 	[ -f "$1" ]
  }
 
- kontrolli_faili "/etc/passwd"
-
- echo $?
+ if fail_olemas "/etc/passwd"; then
+ 	echo "Fail on olemas."
+ else
+ 	echo "Faili ei leitud."
+ fi
