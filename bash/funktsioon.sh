@@ -1,7 +1,7 @@
-test() {
- 	local nimi="Mari"
- 	echo "$nimi"
+tervita() {
+ 	local nimi="$1"
+
+ 	echo "Tere, $nimi!"
  }
 
- test
-
+ tervita "Mari"
