@@ -1,7 +1,9 @@
-tervita() {
+#!/bin/bash
+
+kasutaja_info() {
  	local nimi="$1"
+ 	local vanus="$2"
 
- 	echo "Tere, $nimi!"
+ 	echo "Nimi: $nimi"
+ 	echo "Vanus: $vanus"
  }
-
- tervita "Mari"
