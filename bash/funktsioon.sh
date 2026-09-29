@@ -1,12 +1,13 @@
 #!/bin/bash
 
-liida() {
- 	local a="$1"
- 	local b="$2"
+kontrolli_faili() {
+ 	if [ ! -f "$1" ]; then
+     	echo "Faili ei leitud!"
+     	return 1
+ 	fi
 
- 	echo "$((a + b))"
+ 	echo "Fail on olemas."
  }
 
-tulemus=$(liida 10 20)
-
- echo "Tulemus: $tulemus"
+return 0	# tegevus õnnestus
+return 1	# tekkis probleem
