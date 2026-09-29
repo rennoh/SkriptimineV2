@@ -1,8 +1,7 @@
 #!/bin/bash
 
-hello
-
- hello() {
+hello() {
  	echo "Hello!"
  }
 
+ hello
