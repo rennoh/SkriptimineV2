@@ -1,12 +1,7 @@
-system_info() {
- 	echo "===================="
- 	echo "SÜSTEEMI INFO"
- 	echo "===================="
+#!/bin/bash
 
- 	hostname
- 	uname -r
- 	whoami
+ hello() {
+ 	echo "Hello!"
  }
 
- system_info
- system_info
+ hello
