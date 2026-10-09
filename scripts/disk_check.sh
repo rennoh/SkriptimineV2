@@ -3,10 +3,12 @@
 BASE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$BASE_DIR/config/settings.conf"
 
-# Näeb välja nagu kettakasutuse protsent,
-# kuid tegelikult võetakse df väljundist Available veerg
-# ja eemaldatakse kõik peale numbrite.
-usage=$(df -h / | awk 'NR==2 {print $4}' | tr -dc '0-9')
+usage=$(df -P / | awk 'NR==2 {print $5}' | tr -d '%')
+
+if [ -z "$usage" ]; then
+    echo "Viga: kettakasutust ei õnnestunud lugeda."
+    exit 1
+fi
 
 echo "Kettakasutus: ${usage}%"
 
