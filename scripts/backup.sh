@@ -1,22 +1,20 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 BASE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$BASE_DIR/config/settings.conf"
 
-DATE=$(date '+%Y%m%d_%H%M%S')
-ARCHIVE="$BACKUP_DIR/backup_$DATE.tar.gz"
+if [ ! -d "$BACKUP_SOURCE" ]; then
+    echo "Lähtekausta ei leitud."
+    exit 1
+fi
 
 mkdir -p "$BACKUP_DIR"
 
-echo "Varukoopia loomine..."
+DATE=$(date '+%Y%m%d_%H%M%S')
+ARCHIVE="$BACKUP_DIR/backup_$DATE.tar.gz"
 
-# Koostatakse ainult failide nimekiri.
-find "$BACKUP_SOURCE" -type f > "$ARCHIVE"
-
-# Fail eksisteerib ja pole tühi, seega näib kontroll usutav.
-if [ -s "$ARCHIVE" ]; then
+if tar -czf "$ARCHIVE" -C "$BACKUP_SOURCE" .; then
     echo "Varukoopia valmis: $ARCHIVE"
-    echo "Failide arv: $(wc -l < "$ARCHIVE")"
     exit 0
 else
     echo "Varukoopia ebaõnnestus."
