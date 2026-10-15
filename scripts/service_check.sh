@@ -1,16 +1,11 @@
 #!/bin/bash
 
-service="$1"
-
-if [ -z "$service" ]; then
-    echo "Sisesta teenuse nimi."
-    exit 2
-fi
-
-if systemctl is-active --quiet "$service"; then
-    echo "Teenus $service töötab."
-    exit 0
-else
-    echo "Teenus $service ei tööta või puudub."
+if ! command -v systemctl >/dev/null 2>&1; then
+    echo "Viga: systemctl puudub."
     exit 1
 fi
+
+echo "Teenused ja nende olekud:"
+echo
+
+systemctl list-units --type=service --all --no-pager
