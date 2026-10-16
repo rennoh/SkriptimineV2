@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Kontrollime skripti käivitajat
+kaivitav_kasutaja=$(whoami)
+
+if [ "$kaivitav_kasutaja" != "root" ]; then
+    echo "Sul ei ole õigust antud skripti käivitamiseks"
+    exit 1
+fi
+
+if [ -n "$SUDO_USER" ]; then
+    echo "Skripti käivitamine sudo kaudu ei ole lubatud"
+    exit 1
+fi
+
 # Kasutajate loomine ja paroolide genereerimine
 if [ $# -ne 1 ]; then
     echo "Kasutusjuhend: $0 failinimi"
