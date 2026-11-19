@@ -1,29 +1,46 @@
 #!/bin/bash
-# apache paigaldusskript
-# Kontrollib, kas apache2 on paigaldatud. Kui pole, paigaldab; muidu annab teada ja näitab staatust.
+# Paigaldusskript: apache2 või ansible
 
-# Kontrollime, kas skripti käivitab root (root'i UID on 0)
+# root'i kontroll (root'i EUID on 0)
 if [ "$EUID" -ne 0 ]; then
     echo "Käivita skript root-õigustega (sudo)"
     exit 1
 fi
 
-# Mitu rida "ok installed" leiti (0 = pole paigaldatud, 1 = on)
-APACHE2=$(dpkg-query -W -f='${Status}' apache2 2>/dev/null | grep -c 'ok installed')
+# menüü: küsime kasutajalt valiku (read -p kuvab küsimuse)
+echo "Vali, mida paigaldada:"
+echo "1) apache2"
+echo "2) ansible"
+read -p "Sisesta valik (1 või 2): " VALIK
 
-if [ $APACHE2 -eq 0 ]; then
-    echo "Paigaldame apache2"
-    apt update                      # värskendame paketiloendi (väldib 404 vigu)
-    # $? on eelmise käsu väljumiskood: 0 = õnnestus, muu = viga
-    if apt install -y apache2; then
-        echo "Apache on paigaldatud"
+# case seab valiku järgi paketi nime
+case $VALIK in
+    1) PAKETT="apache2" ;;
+    2) PAKETT="ansible" ;;
+    *) echo "Vigane valik"; exit 1 ;;
+esac
+
+# mitu rida 'ok installed' leiti (0 = pole, 1 = on)
+PAIGALDATUD=$(dpkg-query -W -f='${Status}' $PAKETT 2>/dev/null | grep -c 'ok installed')
+
+if [ $PAIGALDATUD -eq 0 ]; then
+    echo "Paigaldame $PAKETT"
+    apt update                  # värske paketiloend (väldib 404 viga)
+    if apt install -y $PAKETT; then
+        echo "$PAKETT on paigaldatud"
     else
-        echo "Apache paigaldamine ebaõnnestus"
+        echo "$PAKETT paigaldamine ebaõnnestus"
         exit 1
     fi
-elif [ $APACHE2 -eq 1 ]; then
-    echo "apache2 on juba paigaldatud"
-    service apache2 start
-    service apache2 status
+else
+    echo "$PAKETT on juba paigaldatud"
+    if [ "$PAKETT" = "apache2" ]; then
+        service apache2 start
+        systemctl status apache2 --no-pager
+    else
+        ansible --version       # ansible ei ole teenus, näitame versiooni
+    fi
 fi
+
+
 
